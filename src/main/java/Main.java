@@ -10,9 +10,14 @@ public class Main {
         final int[] id = {0}; //initialize id as 0, increment everytime data is added
 
         //grab port as a parameter
-        int port = Integer.parseInt(args[0]);
+        int port = args.length == 0 ? 3000 : Integer.parseInt(args[0]);
         //set up port
         port(port);
+
+        get("/", (req, res) -> {
+            String json = new ObjectMapper().writeValueAsString(dataMap);
+            return "Hello! Please navigate to \"/item\"";
+        });
 
         get("/item", (req, res) -> {
             String json = new ObjectMapper().writeValueAsString(dataMap);
