@@ -31,6 +31,12 @@ public class Main {
             return res;
         });
 
+        delete("/item", (req,res) -> {
+            dataMap.clear();
+            res.redirect("/item");
+            return res;
+        });
+
         get("/item/:id", (req,res) -> {
             Integer key = Integer.parseInt(req.params("id"));
             if(dataMap.containsKey(key)) {
