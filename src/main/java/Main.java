@@ -10,8 +10,7 @@ public class Main {
         final int[] id = {0}; //initialize id as 0, increment everytime data is added
 
         //grab port as a parameter
-//        int port = Integer.parseInt(args[0]);
-        int port = 4000;
+        int port = Integer.parseInt(args[0]);
         //set up port
         port(port);
 
