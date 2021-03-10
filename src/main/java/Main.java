@@ -16,23 +16,47 @@ public class Main {
         port(port);
 
         get("/item", (req, res) -> {
-
             String json = new ObjectMapper().writeValueAsString(dataMap);
             return json;
         });
 
+        //Add data to map, data is not added if the value already exists in the map.
         post("/item", (req, res) -> {
-            dataMap.put(id[0], req.queryParams("value"));
-            id[0]++;
+            String data = req.queryParams("value");
+
+            if(!dataMap.containsValue(data)) {
+                dataMap.put(id[0], req.queryParams("value"));
+                id[0]++;
+            }
             res.redirect("/item");
             return res;
         });
 
+        get("/item/:id", (req,res) -> {
+            Integer key = Integer.parseInt(req.params("id"));
+            if(dataMap.containsKey(key)) {
+                return dataMap.get(key);
+            } else {
+                res.type("application/json");
+                res.status(404);
+                return "{\"message\":\"ID does not exist\"}";
+            }
+        });
+
         //Update data by id
         put("/item/:id", (req,res) -> {
-            dataMap.put(Integer.parseInt(req.params("id")), req.queryParams("value"));
-            res.redirect("/item");
-            return res;
+            Integer key = Integer.parseInt(req.params("id"));
+            if(dataMap.containsKey(key)) {
+                dataMap.put(Integer.parseInt(req.params("id")), req.queryParams("value"));
+                res.redirect("/item");
+                System.out.println("After update: " + dataMap.toString());
+                return res;
+            } else {
+                res.type("application/json");
+                res.status(404);
+                return "{\"message\":\"ID does not exist\"}";
+            }
+
         });
 
         //delete data by id
