@@ -30,18 +30,18 @@ docker run -d -p {PORT}:{PORT} projectpurplecow {PORT}
 ```
 
 ## Routes
-###http://localhost:{PORT}
-###Path("/item")
+### http://localhost:{PORT}
+### Path("/item")
 1. GET - returns current data 
 2. POST - param: value - creates data
 3. DELETE - clears data map
 
-###Path("/item/:id")
+### Path("/item/:id")
 1. GET - returns value for given id
 2. PUT - param: value - updates the data for given id if available
 3. DELETE - deletes the data associated with the id
 
-#Clean Up
+# Clean Up
 ```mermaid
  docker ps -a
  docker stop <CONTAINER_ID>
