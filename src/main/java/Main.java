@@ -28,6 +28,20 @@ public class Main {
             return res;
         });
 
+        //Update data by id
+        put("/item/:id", (req,res) -> {
+            dataMap.put(Integer.parseInt(req.params("id")), req.queryParams("value"));
+            res.redirect("/item");
+            return res;
+        });
+
+        //delete data by id
+        delete("/item/:id", (req,res) -> {
+            dataMap.remove(Integer.parseInt(req.params("id")));
+            res.redirect("/item");
+            return res;
+        });
+
 
 
     }
