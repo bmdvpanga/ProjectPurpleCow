@@ -58,4 +58,4 @@ docker run -d -p {PORT}:{PORT} projectpurplecow {PORT}
     * Requests will have to be modified to interact with the database rather than using the HashMap
 * Include unit test in Docker
     * Will be great to catch issues prior to running the container
-* Modularize HTTP METHODS so not everything is on Main
+~~* Modularize HTTP METHODS so not everything is on Main~~
